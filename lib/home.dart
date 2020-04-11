@@ -18,6 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<dynamic> _recognitions;
+  bool showBoxes = false;
+  String message = "";
   int _imageHeight = 0;
   int _imageWidth = 0;
   String _model = "";
@@ -59,6 +61,24 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  _onChanged(bool value) {
+    setState(() {
+      if (value) {
+        message = "This is true";
+        showBoxes = true;
+        value = true;
+      } else {
+        message = "This is false";
+        showBoxes = false;
+        value = false;
+      }
+    });
+  }
+
+  playGame() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
@@ -81,12 +101,40 @@ class _HomePageState extends State<HomePage> {
             )
           : Stack(
               children: [
+
                 Camera(
                   widget.cameras,
                   _model,
                   setRecognitions,
                 ),
-                BndBox(
+
+                Positioned (
+                  bottom: 45,
+                  right: 45,
+                  width: 75,
+                  child: new Switch(
+                    value: showBoxes,
+                    onChanged: (bool value) => _onChanged(value),
+                    activeColor: Colors.green,
+                  ),
+                ),
+
+                Positioned(
+                  bottom: 45,
+                  left: 45,
+                  width: 100,
+                  child: RaisedButton(
+                    child: const Text("Play"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => GamePage(_recognitions)),
+                      );
+                    }
+                    ),
+                ),
+
+                if(showBoxes) BndBox(
                     _recognitions == null ? [] : _recognitions,
                     math.max(_imageHeight, _imageWidth),
                     math.min(_imageHeight, _imageWidth),
@@ -95,6 +143,34 @@ class _HomePageState extends State<HomePage> {
                     _model),
               ],
             ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class GamePage extends StatelessWidget {
+  List<dynamic> results;
+  GamePage(this.results);
+
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: ListView.builder(
+          itemCount: results.length,
+          itemBuilder: (context, index) {
+            return Container(
+              height: 50,
+              color: Colors.blue[50],
+              child: Center(child: Text('Entry ${results[index].toString()}')),
+            );
+          }
+    ),
     );
   }
 }
