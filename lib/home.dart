@@ -5,6 +5,7 @@ import 'dart:math' as math;
 
 import 'camera.dart';
 import 'bndbox.dart';
+import 'gamepage.dart';
 import 'models.dart';
 
 class HomePage extends StatefulWidget {
@@ -108,6 +109,15 @@ class _HomePageState extends State<HomePage> {
                   setRecognitions,
                 ),
 
+                if(showBoxes) BndBox(
+                    _recognitions == null ? [] : _recognitions,
+                    math.max(_imageHeight, _imageWidth),
+                    math.min(_imageHeight, _imageWidth),
+                    screen.height,
+                    screen.width,
+                    _model
+                ),
+
                 Positioned (
                   bottom: 45,
                   right: 45,
@@ -133,44 +143,8 @@ class _HomePageState extends State<HomePage> {
                     }
                     ),
                 ),
-
-                if(showBoxes) BndBox(
-                    _recognitions == null ? [] : _recognitions,
-                    math.max(_imageHeight, _imageWidth),
-                    math.min(_imageHeight, _imageWidth),
-                    screen.height,
-                    screen.width,
-                    _model),
               ],
             ),
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class GamePage extends StatelessWidget {
-  List<dynamic> results;
-  GamePage(this.results);
-
-
-  @override
-  Widget build(BuildContext context) {
-
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-      body: ListView.builder(
-          itemCount: results.length,
-          itemBuilder: (context, index) {
-            return Container(
-              height: 50,
-              color: Colors.blue[50],
-              child: Center(child: Text('Entry ${results[index].toString()}')),
-            );
-          }
-    ),
     );
   }
 }
