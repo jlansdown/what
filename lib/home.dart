@@ -65,20 +65,16 @@ class _HomePageState extends State<HomePage> {
   _onChanged(bool value) {
     setState(() {
       if (value) {
-        message = "This is true";
         showBoxes = true;
         value = true;
       } else {
-        message = "This is false";
         showBoxes = false;
         value = false;
       }
     });
   }
 
-  playGame() {
-
-  }
+  void _doNothing() {}
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +86,11 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   RaisedButton(
-                    child: const Text(ssd),
+                    child: const Text("Play!"),
                     onPressed: () => onSelect(ssd),
                   ),
                   RaisedButton(
-                    child: const Text(mobilenet),
+                    child: const Text("How to..."),
                     onPressed: () => onSelect(mobilenet),
                   ),
                 ],
@@ -136,10 +132,13 @@ class _HomePageState extends State<HomePage> {
                   child: RaisedButton(
                     child: const Text("Play"),
                     onPressed: () {
+
+                      _recognitions.isNotEmpty ?
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => GamePage(_recognitions)),
-                      );
+                      ) : _doNothing();
                     }
                     ),
                 ),

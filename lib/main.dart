@@ -12,6 +12,7 @@ Future<Null> main() async {
   } on CameraException catch (e) {
     print('Error: $e.code\nError Message: $e.message');
   }
+
   runApp(new MyApp());
 }
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'tflite real-time detection',
+      title: 'What?!',
       theme: ThemeData(
         brightness: Brightness.dark,
       ),

@@ -6,11 +6,14 @@ PODS:
   - tflite (1.0.5):
     - Flutter
     - TensorFlowLite
+  - vibrate (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - camera (from `.symlinks/plugins/camera/ios`)
   - Flutter (from `Flutter`)
   - tflite (from `.symlinks/plugins/tflite/ios`)
+  - vibrate (from `.symlinks/plugins/vibrate/ios`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -23,12 +26,15 @@ EXTERNAL SOURCES:
     :path: Flutter
   tflite:
     :path: ".symlinks/plugins/tflite/ios"
+  vibrate:
+    :path: ".symlinks/plugins/vibrate/ios"
 
 SPEC CHECKSUMS:
   camera: 38cc83ae9a5667bb5a71c7d9edaf60a91920fd4e
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   TensorFlowLite: 8b9dc4eb32eac0f8cb660c66bca7604da56dcc5a
   tflite: e3f7d0e4086e061e785777ef90e8b958f35ed56b
+  vibrate: 967ba16b8bd87d2fa3646472bb10429f1927c32f
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 

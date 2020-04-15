@@ -1,74 +1,69 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'resultspage.dart';
+import'package:vibrate/vibrate.dart';
 
 
 // ignore: must_be_immutable
-class GamePage extends StatefulWidget {
+class GamePage extends StatelessWidget {
   List<dynamic> results;
   GamePage(this.results);
-
-
-  @override
-  _GamePageState createState() => new _GamePageState();
-}
-
-
-class _GamePageState extends State<GamePage> {
-  int randomNumber;
-  String playerGuess = "";
+  String resultImage = "";
 
   var randomNumberGenerator = new Random();
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void _setText(newText) {
-    setState(() {
-      playerGuess = newText;
-    });
-  }
-
-  void _setRandomNumber(sizeOfResults) {
-    randomNumber = randomNumberGenerator.nextInt(sizeOfResults);
-  }
 
   @override
   Widget build(BuildContext context) {
 
+    final int randomResultsIndex = randomNumberGenerator.nextInt(results.length);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Results"),
+        title: Text("Guess What?!"),
       ),
-      body: Column(
+
+      body: Padding(
+
+      padding: EdgeInsets.only(top: 150),
+
+
+        child: Column(
+
 
           children: <Widget> [
 
-            Text('$playerGuess'),
+            Text("Guess what the computer chose!!"),
 
-            Text('Bottom'),
+            Image.asset('assets/what.png'),
 
             Expanded(
-
               child: ListView.builder(
-                itemCount: widget.results.length,
+                itemCount: results.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text('${widget.results[index]['detectedClass']}'),
+                  return ListTile (
+                    title: Text('${results[index]['detectedClass']}'),
                     onTap: () {
-                        _setRandomNumber(widget.results.length);
-                        _setText(
-                            '${widget.results[index]['detectedClass']}'
-                                + ' ' + '${widget.results[randomNumber]['detectedClass']}');
-                    },
-                  ); 
-                }
-            ),
 
-            ),
-            Text('Bottom'),
-      ],
+                      results[index]['detectedClass'] == results[randomResultsIndex]['detectedClass'] ?
+                      resultImage = 'assets/correct.png' :  resultImage = 'assets/incorrect.png';
+
+                      Vibrate.vibrate();
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ResultsPage(resultImage)),
+                      );
+
+                    },
+                  );
+                }
+              )
+
+            )
+
+          ],
+        ),
       ),
     );
   }
