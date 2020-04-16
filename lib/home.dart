@@ -86,6 +86,11 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+
+
+                  Image.asset('assets/logo.png'),
+
+
                   RaisedButton(
                     color: Colors.blue,
                     textColor: Colors.white,
