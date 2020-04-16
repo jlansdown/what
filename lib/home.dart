@@ -7,6 +7,7 @@ import 'camera.dart';
 import 'bndbox.dart';
 import 'gamepage.dart';
 import 'models.dart';
+import 'howto.dart';
 
 class HomePage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -86,12 +87,20 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   RaisedButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
                     child: const Text("Play!"),
                     onPressed: () => onSelect(ssd),
                   ),
                   RaisedButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
                     child: const Text("How to..."),
-                    onPressed: () => onSelect(mobilenet),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HowTo()));
+                    },
                   ),
                 ],
               ),
@@ -130,8 +139,10 @@ class _HomePageState extends State<HomePage> {
                   left: 45,
                   width: 100,
                   child: RaisedButton(
-                    child: const Text("Play"),
-                    onPressed: () {
+                      color: Colors.blue,
+                      textColor: Colors.white,
+                      child: const Text("Play"),
+                      onPressed: () {
 
                       _recognitions.isNotEmpty ?
 

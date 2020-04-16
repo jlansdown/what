@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'What?!',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
       home: HomePage(cameras),
     );

@@ -25,13 +25,17 @@ class ResultsPage extends StatelessWidget {
 
           children: <Widget>[
 
-            Text("Your guess was..."),
+            Text("Your guess was...",
+                style: TextStyle(fontWeight: FontWeight.bold)),
 
             Image.asset(resultImage),
 
             RaisedButton(
-              child: Text("Play again!"),
-              onPressed: () {
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Text("Play again!",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+                onPressed: () {
                 Navigator.of(context).popUntil((route) => route.isFirst);
               }
             ),

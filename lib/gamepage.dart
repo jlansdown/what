@@ -12,6 +12,8 @@ class GamePage extends StatelessWidget {
 
   var randomNumberGenerator = new Random();
 
+  void _doNothing() {}
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,8 @@ class GamePage extends StatelessWidget {
 
           children: <Widget> [
 
-            Text("Guess what the computer chose!!"),
+            Text("Guess what the computer chose!!",
+                style: TextStyle(fontWeight: FontWeight.bold)),
 
             Image.asset('assets/what.png'),
 
@@ -42,13 +45,16 @@ class GamePage extends StatelessWidget {
                 itemCount: results.length,
                 itemBuilder: (context, index) {
                   return ListTile (
-                    title: Text('${results[index]['detectedClass']}'),
+                    title: Text('${results[index]['detectedClass']}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                     onTap: () {
 
                       results[index]['detectedClass'] == results[randomResultsIndex]['detectedClass'] ?
                       resultImage = 'assets/correct.png' :  resultImage = 'assets/incorrect.png';
 
-                      Vibrate.vibrate();
+                      Vibrate.canVibrate != null ?
+                      Vibrate.vibrate() : _doNothing();
 
                       Navigator.push(
                         context,
